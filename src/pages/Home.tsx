@@ -75,7 +75,7 @@ export default function Home() {
 
             <div className="flex justify-center animate-slide-up-2">
               <div className="relative">
-                <div className="absolute -inset-8 bg-gold-500/10 rounded-[2rem] blur-3xl animate-glow" />
+                <div className="absolute -inset-8 bg-gold-500/10 rounded-[2rem] blur-3xl animate-glow hidden md:block" />
                 <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-gold-500/20 via-transparent to-gold-600/10" />
                 <ChessBoard size="lg" animated />
               </div>

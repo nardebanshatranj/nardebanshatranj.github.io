@@ -41,7 +41,8 @@
 
 @layer components {
   .glass {
-    @apply bg-surface-800/50 backdrop-blur-2xl border border-white/[0.06];
+    @apply bg-surface-800/90 md:bg-surface-800/50 border border-white/[0.06]
+           md:backdrop-blur-2xl;
   }
 
   .glass-hover {
@@ -72,7 +73,7 @@
   .card-luxury {
     @apply relative rounded-2xl p-6 md:p-8
            bg-gradient-to-br from-surface-800/80 to-surface-900/80
-           backdrop-blur-2xl
+           md:backdrop-blur-2xl
            border border-white/[0.06]
            shadow-xl shadow-black/20
            transition-all duration-300

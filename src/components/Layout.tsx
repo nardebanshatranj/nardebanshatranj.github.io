@@ -14,7 +14,7 @@ export default function Layout() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+      <div className="fixed inset-0 pointer-events-none overflow-hidden hidden md:block">
         <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gold-500/[0.03] rounded-full blur-[100px]" />
         <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-indigo-500/[0.03] rounded-full blur-[120px]" />
       </div>

@@ -1,0 +1,134 @@
+backend:
+  name: github
+  repo: nardebanshatranj/nardebanshatranj.github.io
+  branch: main
+  base_url: https://nardebanshatranj-oauth.psithlar.workers.dev
+  auth_endpoint: auth
+
+# for local development, run npx decap-server and uncomment this line
+# local_backend: true
+
+locale: fa
+
+site_url: https://nardebanshatranj.github.io
+display_url: https://nardebanshatranj.github.io
+
+publish_mode: simple
+
+collections:
+  - name: categories
+    label: دسته‌های آموزشی
+    label_singular: دسته
+    folder: content/categories
+    create: true
+    delete: false
+    slug: "{{id}}"
+    identifier_field: id
+    extension: json
+    format: json
+    summary: "{{title}}"
+    sortable_fields: [sort, title]
+    fields:
+      - label: شناسه (انگلیسی)
+        name: id
+        widget: string
+        hint: "مثال: basics — فقط حروف کوچک انگلیسی و خط تیره"
+        pattern:
+          - "^[a-z][a-z0-9-]*$"
+          - "شناسه باید با حرف انگلیسی شروع شود"
+      - { label: عنوان, name: title, widget: string }
+      - { label: توضیح دسته, name: description, widget: text }
+      - label: آیکون
+        name: iconId
+        widget: select
+        options:
+          - { label: پیاده, value: pawn }
+          - { label: اسب, value: knight }
+          - { label: تاکتیک, value: tactics }
+          - { label: رخ, value: rook }
+          - { label: وزیر, value: queen }
+      - label: کلاس رنگ
+        name: color
+        widget: string
+        hint: "مثال: from-emerald-500 to-teal-600"
+      - label: کلاس گرادیان پس‌زمینه
+        name: gradient
+        widget: string
+        hint: "مثال: bg-gradient-to-br from-emerald-500/20 to-teal-600/10"
+      - { label: ترتیب نمایش, name: sort, widget: number, value_type: int, min: 1, max: 99 }
+      - label: درس‌ها
+        name: lessons
+        widget: list
+        summary: "{{fields.title}}"
+        fields:
+          - { label: شناسه درس, name: id, widget: string, hint: "مثال: board-pieces" }
+          - { label: عنوان درس, name: title, widget: string }
+          - { label: توضیح کوتاه, name: description, widget: text }
+          - { label: مدت زمان, name: duration, widget: string, hint: "مثال: ۱۵ دقیقه" }
+          - label: سطح
+            name: difficulty
+            widget: select
+            options: [مبتدی, متوسط, پیشرفته]
+          - label: بخش‌های درس
+            name: content
+            widget: list
+            summary: "{{fields.heading}}"
+            fields:
+              - { label: عنوان بخش, name: heading, widget: string }
+              - label: پاراگراف‌ها
+                name: paragraphs
+                widget: list
+                field: { label: پاراگراف, name: paragraph, widget: text }
+              - label: نکات (اختیاری)
+                name: tips
+                widget: list
+                required: false
+                field: { label: نکته, name: tip, widget: string }
+              - label: جمله برجسته (اختیاری)
+                name: highlight
+                widget: text
+                required: false
+              - label: نمودار شطرنج (اختیاری)
+                name: diagram
+                widget: select
+                required: false
+                options:
+                  - { label: — بدون نمودار —, value: "" }
+                  - { label: صفحه اولیه, value: initial }
+                  - { label: حرکت اسب, value: knightMove }
+                  - { label: چنگال, value: fork }
+                  - { label: بازی ایتالیایی, value: italian }
+                  - { label: قلعه‌رانی, value: castling }
+                  - { label: مات تخت, value: backRank }
+                  - { label: مرکز, value: center }
+
+  - name: quiz
+    label: آزمون
+    files:
+      - label: سوالات آزمون
+        name: questions
+        file: content/quiz.json
+        extension: json
+        format: json
+        fields:
+          - label: سوالات
+            name: questions
+            widget: list
+            summary: "{{fields.id}} — {{fields.question}}"
+            fields:
+              - { label: شماره سوال, name: id, widget: number, value_type: int, min: 1 }
+              - { label: دسته, name: category, widget: string }
+              - { label: متن سوال, name: question, widget: text }
+              - label: گزینه‌ها
+                name: options
+                widget: list
+                min: 2
+                max: 6
+                field: { label: گزینه, name: option, widget: string }
+              - label: شماره پاسخ صحیح (از ۰)
+                name: correctIndex
+                widget: number
+                value_type: int
+                min: 0
+                max: 5
+              - { label: توضیح پاسخ, name: explanation, widget: text }

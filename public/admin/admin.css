@@ -1,0 +1,27 @@
+/* RTL and branding tweaks for Decap CMS */
+html,
+body {
+  direction: rtl;
+}
+
+[class*='AppHeader'] {
+  background: linear-gradient(135deg, #047857 0%, #0d9488 100%) !important;
+}
+
+[class*='AppHeader'] h1,
+[class*='AppHeader'] a {
+  color: #fff !important;
+}
+
+textarea,
+input[type='text'],
+input[type='number'] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Keep code-like lesson IDs LTR */
+input[name*='id'] {
+  direction: ltr;
+  text-align: left;
+}
